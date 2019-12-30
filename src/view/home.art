@@ -1,2 +1,59 @@
-<%include("./header.art")%>
-<div>内容</div>
+
+<div>
+<div class="banner">
+    <ul>
+        <%for(var i=0;i<banners.length;i++){%>
+            <li>
+                <img src=<%-banners[i].imgUrl%>>
+            </li>
+        <%}%>
+    </ul>
+</div>
+<div class="nav">
+   <%for(var i=0;i<navs.length;i++){%>
+         <div>
+            <div>
+                <img src=<%- navs[i].imgUrl%>>
+            </div>
+            <div>
+                <%- navs[i].name%>
+            </div>
+        </div>
+   <%}%>
+</div>
+<div class="recommend">
+    <div class="recommend-title">主编力荐</div>
+    
+        <div class="recommend-list">
+            <%for(var i=0;i<Recommend.length;i++){%>
+               <div>
+                    <div>
+                        <img src=<%-Recommend[i].imgUrl%>>
+                    </div>
+                    <div class="recommend-list-name"><%- Recommend[i].bookName%></div>
+               </div>
+            <%}%>
+        </div>
+</div>
+
+<div class="classify">
+    <div class="classify-title">本期主打分类</div>
+    <div class="classify-list">
+       <%for(var i=0;i<classifys.length;i++){%>
+             <div class="classify-list-item">
+                <div class="books-img">
+                    <img src=<%- classifys[i].imgUrl%>>
+                </div>
+                <div class="books-des">
+                    <div><%- classifys[i].bookName%></div>
+                    <div><%- classifys[i].introduction%></div>
+                    <div>
+                        <span><%- classifys[i].penName%></span>
+                        <span><%- classifys[i].category%></span>
+                    </div>
+                </div>
+             </div>
+       <%}%>
+    </div>
+</div>
+</div>

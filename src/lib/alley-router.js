@@ -34,7 +34,7 @@ class AlleyRouter {
         //2、处理路由表
         this.mapRoutesEvent();
         //3、渲染对应的页面
-        this.randerTemplate();
+        //this.randerTemplate();
     }
     isMode() {
         //定义hash路由

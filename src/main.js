@@ -1,6 +1,7 @@
 import "zepto";
 import "touchjs";
 import "./router";
+import "styles/common/index.css";
 
 /*
     路由：
