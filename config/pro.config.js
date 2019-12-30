@@ -4,6 +4,7 @@ const webpackMerge = require("webpack-merge");
 const ExtractTextWebpackplugin = require("extract-text-webpack-plugin");
 const config = webpackMerge(baseConfig, {
     mode: "production",
+    devtool:"cheap-module-source-map",
     module: {
         rules: [
             {

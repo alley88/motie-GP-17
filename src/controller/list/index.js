@@ -1,5 +1,5 @@
 import listView from "view/list.art"
-import tabbar from "../tabbar"
+
 class List{
     constructor(){
 
@@ -9,9 +9,10 @@ class List{
       
     }
     render(){
+       
         var html = listView();
-        $("#app").html(html);
-        tabbar.init();
+        $(".container").html(html);
+       
 
     }
 }

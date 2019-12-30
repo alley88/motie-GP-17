@@ -1,5 +1,5 @@
 import mineView from "view/mine.art"
-import tabbar from "../tabbar"
+
 class Mine{
     constructor(){
 
@@ -9,9 +9,10 @@ class Mine{
       
     }
     render(){
+        
         var html = mineView();
-        $("#app").html(html);
-        tabbar.init();
+        $(".container").html(html);
+       
 
     }
 }

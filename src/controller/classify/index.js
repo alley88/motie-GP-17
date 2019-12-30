@@ -1,5 +1,5 @@
 import classifyView from "view/classify.art"
-import tabbar from "../tabbar"
+
 class Classify{
     constructor(){
 
@@ -9,9 +9,10 @@ class Classify{
       
     }
     render(){
+       
         var html = classifyView();
-        $("#app").html(html);
-        tabbar.init();
+        $(".container").html(html);
+       
 
     }
 }

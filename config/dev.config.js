@@ -6,6 +6,7 @@ const path = require("path");
 const config = webpackMerge(baseConfig, {
     //当前的环境
     mode: "development",
+    devtool:"cheap-module-eval-source-map",
     module: {
         rules: [
             {

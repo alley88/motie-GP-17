@@ -34,29 +34,12 @@ class TabBar {
     }
     eachTabBar() {
         this.ali = $("#footer>ul li");
+        this.ali.eq(0).addClass("active").siblings().removeClass("active");
         this.ali.each(this.eachTabBarCb.bind(this))
     }
     eachTabBarCb(index) {
 
         this.ali.eq(index).on("tap", this.handleTabBarTap.bind(this, index))
-        console.log(window.router)
-        // switch (router.path) {
-        //     case "/":
-        //         this.activeIndex = 0;
-        //         break;
-        //     case "/classify":
-        //         this.activeIndex = 1;
-        //         break;
-        //     case "/list":
-        //         this.activeIndex = 2;
-        //         break;
-        //     case "/mine":
-        //         this.activeIndex = 3;
-        //         break;
-        // }
-
-
-        this.ali.eq(this.activeIndex).addClass("active").siblings().removeClass("active");
     }
     handleTabBarTap(index) {
         switch (index) {

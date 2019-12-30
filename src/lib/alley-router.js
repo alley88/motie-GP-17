@@ -1,5 +1,5 @@
 import router from "../router";
-
+import tabbar from "controller/tabbar/index.js"
 class AlleyRouter {
     constructor(options) {
         //路由配置项
@@ -12,6 +12,9 @@ class AlleyRouter {
         this.current = "/";
         //路由表对象
         this.mapRoutes = {};
+
+        //定义tabbar的显示
+        this.flag = true;
 
         //获取路由传值得对象
         this.$route = {
@@ -85,6 +88,10 @@ class AlleyRouter {
         }
         this.$route.path = this.current;
         var template = this.mapRoutes[this.current].template;
+        if(this.flag){
+            tabbar.init();
+            this.flag = false;
+        }
         template.render();
     }
     //路由跳转
