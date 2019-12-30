@@ -1,1 +1,2 @@
-<div>home页面</div>
+<%include("./header.art")%>
+<div>内容</div>

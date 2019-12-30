@@ -28,6 +28,17 @@ const config = webpackMerge(baseConfig, {
                 from: /.*/g,
                 to: '/index.html' //与output的publicPath有关(HTMLplugin生成的html默认为index.html)
             }]
+        },
+        //代理
+        proxy:{
+            "/h5":{
+                //代理目标点
+                target:"https://app2.motie.com",
+                //允许跨域代理
+                changeOrigin:true
+            }
+           
+            //当请求的地址以/ajax开头的时候 会将请求的地址代理到http://m.maoyan.com
         }
     }
 })

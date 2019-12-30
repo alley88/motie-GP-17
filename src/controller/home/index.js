@@ -1,5 +1,6 @@
 import home from "view/home.art"
-
+import "styles/home/index.scss"
+import {channelsApi} from "api/home.js"
 class Home{
     constructor(){
         
@@ -7,11 +8,11 @@ class Home{
     init(){
 
     }
-    render(){
-
+    async render(){
+        var data = await channelsApi();
+      
         var html = home();
         $(".container").html(html);
-       
 
     }
 }

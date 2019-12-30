@@ -99,3 +99,8 @@ url-loader:一般用来解析一些体积比较小的图片可以通过options�
     <%}%>
 ```
 > 3、数据渲染  <%-  %>：解析Html标签  <%= %> 不会解析html标签
+
+
+**在单页面开发中如何使用async await？**
+> 1、安装 `cnpm i @babel/plugin-transform-runtime --save-dev`    `cnpm i @babel/runtime --save`
+> 2、在bablerc文件中配置`plugins:["@babel/plugin-transform-runtime"]`

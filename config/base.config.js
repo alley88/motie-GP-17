@@ -55,7 +55,10 @@ module.exports = {
             "controller": path.join(__dirname, "../src/controller"),
             "lib": path.join(__dirname, "../src/lib"),
             "router": path.join(__dirname, "../src/router"),
-            "styles": path.join(__dirname, "../src/styles")
+            "styles": path.join(__dirname, "../src/styles"),
+            "api":path.join(__dirname,"../src/api"),
+            "model":path.join(__dirname,"../src/model"),
+            "utils":path.join(__dirname,"../src/utils")
         }
     },
     //loader的配置  有些文件浏览器无法识别 ，因此我们需要将浏览器不识别的文件转换为浏览器识别的文件
