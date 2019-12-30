@@ -1,0 +1,10 @@
+<div id="footer">
+    <ul>
+       <%for(var i=0;i<data.length;i++){%>
+             <li>
+                <i class="iconfont"><%- data[i].icon %></i>
+                <span><%- data[i].text %></span>
+             </li>
+       <%}%>
+    </ul>
+</div>
