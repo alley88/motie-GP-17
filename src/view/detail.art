@@ -1,0 +1,28 @@
+<div class="detail-header">
+     <div class="detail-header_title">
+     <i class="iconfont back">&#xe642;</i>
+        {{data.name}}
+        </div>
+     <div class="detail-header_icon">
+        <i class="iconfont">&#xe613;</i>
+        <i class="iconfont">&#xe634;</i>
+     </div>
+</div>
+<div class="detail-info">
+    <div class="detail-info_top">
+        <div class="detail-info_top-pic">
+           <img src={{data.icon}}>
+        </div>
+        <div class="info_top-des">
+            <div>{{data.name}}</div>
+            <div>{{data.authorName}} |{{data.sortName}} | {{data.status}}</div>
+            <div><%-data.words/10000%>万字  |<%-data.discountPrice%></div>
+            <div>粉丝数 : {{data.followCount}}</div>
+            <div>点击数 : {{data.visitCount}}</div>
+        </div>
+    </div>
+    <div class="detail-info_b">
+         <div>加入收藏</div>
+         <div>立即购买</div>
+    </div>
+</div>

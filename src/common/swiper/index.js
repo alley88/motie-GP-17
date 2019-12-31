@@ -60,35 +60,30 @@ export default class Swiper {
 
     }
     handleTouchEnd() {
-        this.ul.on("touchend",this.handleTouchEndCb.bind(this))
+        this.ul.on("touchend", this.handleTouchEndCb.bind(this))
     }
-    handleTouchEndCb(e){
-        this.ul.css({
-            transition:"none"
-        })
-
-        if(Math.abs(this.distanceX)> this.iw*1/3){
-          
+    handleTouchEndCb(e) {
+        if (Math.abs(this.distanceX) > this.iw * 1 / 3) {
             //滑动
-            if(this.distanceX>0 && this.iNow == 0){
-              
+            if (this.distanceX > 0 && this.iNow == 0) {
+
                 this.iNow = this.len - 2;
-            }else if(this.distanceX<0 && this.iNow == this.len-1){
-               
+            } else if (this.distanceX < 0 && this.iNow == this.len - 1) {
+
                 this.iNow = 1;
-            }else{
-                if(this.distanceX >0){
-                    if(this.iNow == 0){
+            } else {
+                if (this.distanceX > 0) {
+                    if (this.iNow == 0) {
                         this.iNow = this.len - 2;
                         this.ul.css({
                             transition: "none",
-                            left:-(this.len-1)*this.iw
+                            left: -(this.len - 1) * this.iw
                         })
-                    }else{
+                    } else {
                         this.iNow--
                     }
-                    
-                }else if(this.distanceX <0){
+
+                } else if (this.distanceX < 0) {
                     if (this.iNow == this.len - 1) {
                         this.iNow = 1;
                         this.ul.css({
@@ -100,26 +95,26 @@ export default class Swiper {
                     }
                 }
             }
-            
-        }else{
-          
+
+        } else {
+
             //回弹
-            if(this.distanceX>0 && this.iNow == 0){
+            if (this.distanceX > 0 && this.iNow == 0) {
                 this.ul.css({
-                    left:0
+                    left: 0
                 })
-            }else if(this.distanceX<0 && this.iNow == this.len-1){
+            } else if (this.distanceX < 0 && this.iNow == this.len - 1) {
                 this.ul.css({
-                    left:-(this.len-1)*this.iw
+                    left: -(this.len - 1) * this.iw
                 })
-            }else{
+            } else {
                 this.ul.css({
-                    left:-(this.iNow)*this.iw
+                    left: -(this.iNow) * this.iw
                 })
             }
         }
 
-        setTimeout(()=>{
+        setTimeout(() => {
             this.toImg();
             this.autoplay();
         })

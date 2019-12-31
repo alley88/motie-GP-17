@@ -9,12 +9,27 @@ import axios from "utils/request.js";
 */
 export const channelsApi = ()=>axios({
     method:"get",
-    url:"/h5/channels/106",
+    url:"/api/h5/channels/106",
     headers:{
         os: "wap"
     }
 })
 
+
+/*
+书籍详情
+157018：书籍ID
+https://app2.motie.com
+*/
+
+
+export const detailApi = (id)=>axios({
+    method:"get",
+    url:"/api/books/"+id+"/detail",
+    headers:{
+        os: "wap"
+    }
+})
 
 
 

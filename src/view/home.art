@@ -26,7 +26,7 @@
     
         <div class="recommend-list">
             <%for(var i=0;i<Recommend.length;i++){%>
-               <div>
+               <div data-id=<%-Recommend[i].bookId%>>
                     <div>
                         <img src=<%-Recommend[i].imgUrl%>>
                     </div>
@@ -40,7 +40,7 @@
     <div class="classify-title">本期主打分类</div>
     <div class="classify-list">
        <%for(var i=0;i<classifys.length;i++){%>
-             <div class="classify-list-item">
+             <div class="classify-list-item" data-id=<%- classifys[i].bookId%>>
                 <div class="books-img">
                     <img src=<%- classifys[i].imgUrl%>>
                 </div>

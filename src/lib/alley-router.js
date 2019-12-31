@@ -124,5 +124,8 @@ class AlleyRouter {
         this.$route.query = obj;
 
     }
+    back(){
+        window.history.back();
+    }
 }
 export default AlleyRouter;

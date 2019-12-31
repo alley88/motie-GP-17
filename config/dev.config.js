@@ -31,13 +31,17 @@ const config = webpackMerge(baseConfig, {
         },
         //代理
         proxy:{
-            "/h5":{
+            "/api":{
                 //代理目标点
                 target:"https://app2.motie.com",
                 //允许跨域代理
-                changeOrigin:true
+                changeOrigin:true,
+                pathRewrite:{
+                    "^/api":""
+                }
             }
-           
+            
+            //   https://app2.motie.com  
             //当请求的地址以/ajax开头的时候 会将请求的地址代理到http://m.maoyan.com
         }
     }
