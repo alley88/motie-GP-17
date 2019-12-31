@@ -88,11 +88,14 @@ class AlleyRouter {
         }
         this.$route.path = this.current;
         var template = this.mapRoutes[this.current].template;
+       
         if(this.flag){
             tabbar.init();
             this.flag = false;
         }
+        $("#footer").siblings().remove();
         template.render();
+      
     }
     //路由跳转
     push(path) {

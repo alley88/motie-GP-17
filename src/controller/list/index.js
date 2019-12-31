@@ -11,7 +11,10 @@ class List{
     render(){
        
         var html = listView();
-        $(".container").html(html);
+        var container = $("<div class='container'></div>")
+        container.append(html);
+        $("#app").prepend(container)
+
        
 
     }

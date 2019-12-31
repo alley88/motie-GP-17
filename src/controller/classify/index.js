@@ -11,7 +11,9 @@ class Classify{
     render(){
        
         var html = classifyView();
-        $(".container").html(html);
+        var container = $("<div class='container'></div>")
+        container.append(html);
+        $("#app").prepend(container)
        
 
     }
