@@ -1,1 +1,46 @@
-<div>classify</div>
+<div class="classify-header">
+    <div>分类</div>
+</div>
+<div class="classify-sort">
+    <div>
+        <div class="sort-menu">频道</div>
+        <div class="sort-list">
+            <div class="sort-active" data-group="1">男频</div>
+            <div data-group="2">女频</div>
+            <div data-group="3">出版</div>
+        </div>
+    </div>
+
+    <div>
+        <div class="sort-menu">分类</div>
+        <div class="sort-list">
+            <div class="sort-active">全部</div>
+           <%for(var i=0;i<menus.length;i++){%>
+                 <div data-sortid=<%-menus[i].secondId%>><%-menus[i].secondTitle%></div>
+           <%}%>
+        </div>
+        <div class="sort-list_down">
+            <i class="iconfont">&#xe63c;</i>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="sort-menu">状态</div>
+        <div class="sort-list">
+            <div class="sort-active" data-finish="0">全部</div>
+            <div data-finish="1">完结</div>
+            <div data-finish="2">连载</div>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="sort-menu">价格</div>
+        <div class="sort-list">
+            <div class="sort-active" data-free="0">全部</div>
+            <div data-free="1">免费</div>
+            <div data-free="2">付费</div>
+        </div>
+    </div>
+</div>
