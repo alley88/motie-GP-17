@@ -143,7 +143,6 @@ class Classify {
     }
     handleBooksListItemID(index) {
         var id = $(".booksList-item").eq(index).attr("data-id");
-
         router.push("/detail?id=" + id);
     }
 }

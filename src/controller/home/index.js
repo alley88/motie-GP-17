@@ -35,6 +35,7 @@ class Home{
         new Swiper(".banner");
 
         this.pushDetails();
+        this.search();
     }
     pushDetails(){
        
@@ -59,6 +60,12 @@ class Home{
     handleClassifyListCb(index){
         var id =  this.classifyListItem.eq(index).attr("data-id")
         router.push("/detail?id="+id)
+    }
+    search(){
+        $(".header-right_search").on("tap",this.handleSearchCb.bind(this))
+    }
+    handleSearchCb(){
+        router.push("/search")
     }
 
 }

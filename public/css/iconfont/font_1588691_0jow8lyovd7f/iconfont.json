@@ -13,6 +13,13 @@
       "unicode_decimal": 58988
     },
     {
+      "icon_id": "577352",
+      "name": "清除",
+      "font_class": "qingchu",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
       "icon_id": "1025164",
       "name": "排行",
       "font_class": "paixing",

@@ -10,6 +10,7 @@ import list from "controller/list/index.js"
 import classify from "controller/classify/index.js";
 import mine from "controller/mine/index.js"
 import detail from "controller/detail/index.js"
+import search from "controller/search/index.js"
 const router = new AlleyRouter({
     //路由的形式
     mode:"hash",
@@ -38,6 +39,10 @@ const router = new AlleyRouter({
         {
             path:"/detail",
             template:detail
+        },
+        {
+            path:"/search",
+            template:search
         }
     ]
 })

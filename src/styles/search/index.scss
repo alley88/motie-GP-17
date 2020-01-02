@@ -1,0 +1,57 @@
+.container{
+    background: #fff;
+}
+.search-header{
+    width:100%;
+    height: .88rem;
+    position: fixed;
+    left: 0;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    &>div{
+        width:5.42rem;
+        height: .56rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        i{
+            position: absolute;
+            left:.2rem;
+        }
+        input{
+            width: 100%;
+            height: 100%;
+            border:0;
+            border:1px solid #bbb;
+            border-radius: .2rem;
+            padding-left: .6rem;
+            outline: none;
+        }
+    }
+}
+
+.Record{
+    width:100%;
+    padding: 0 .4rem;
+    background: #fff;
+    padding-top:.2rem;
+    .Record-t{
+        display: flex;
+        justify-content: space-between;
+        font-size:.3rem;
+    }
+    .Record-b{
+        display: flex;
+        flex-wrap: wrap;
+        &>div{
+            padding: .1rem;
+            border:1px solid #ccc;
+            border-radius: .1rem;
+            margin:.1rem;
+        }
+    }
+}

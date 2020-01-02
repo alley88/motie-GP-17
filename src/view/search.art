@@ -1,0 +1,19 @@
+<div class="search-header">
+    <div>
+        <i class="iconfont">&#xe613;</i>
+        <input type="text" placeholder="黄泉药店" class="search-input"/>
+    </div>
+</div>
+<div class="Record">
+    <div class="Record-t">
+        <div>最近搜索</div>
+        <div>
+            <i class="iconfont">&#xe747;</i>
+        </div>
+    </div>
+    <div class="Record-b">
+        <%for(var i=0;i<data.length;i++){%>
+            <div><%-data[i]%></div>
+        <%}%>
+    </div>
+</div>
