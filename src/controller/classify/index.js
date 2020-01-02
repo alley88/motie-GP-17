@@ -43,21 +43,23 @@ class Classify {
     }
     async booksListRender() {
         let data = await booksListApi(this.sortData);
+        /*
+            根据状态值做下拉刷新和上拉加载  因为上拉加载更多其实是将之前的数据与新增的数据进行相拼接
+            而下拉刷新是将数据进行了重新的赋值
+        
+        */
+
         if (this.status == "down") {
             this.booksListData = data.data.bookList;
         } else if (this.status == "up") {
             this.booksListData = [...this.booksListData, ...data.data.bookList];
         }
-
-
         var html = booksListView({ data: this.booksListData });
         $(".booksList").html(html);
         this.booksDetail();
-
-        
-
-
     }
+
+    //上拉加载更多和下拉刷新事件
     scroll() {
         this.scroll = new BScroll(".container");
 
