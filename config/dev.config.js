@@ -22,7 +22,7 @@ const config = webpackMerge(baseConfig, {
         //自动打开浏览器
         open: true,
         //设置端口号
-        port: 9000,
+        port: 9001,
         historyApiFallback: {
             rewrites: [{
                 from: /.*/g,

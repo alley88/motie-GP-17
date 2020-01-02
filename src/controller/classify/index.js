@@ -1,10 +1,13 @@
 import classifyView from "view/classify.art"
 import booksListView from "view/booksList.art"
-import { categoryApi,booksListApi} from "api/classify.js"
+import { categoryApi, booksListApi } from "api/classify.js"
+import BScroll from "../../common/bscroll/index.js"
 import "styles/classify/index.scss";
 class Classify {
     constructor() {
         this.group = 1;
+        this.booksListData = [];
+        this.status = "down"
         this.sortData = {
             // 价格
             free: 0,
@@ -13,7 +16,7 @@ class Classify {
             //频道
             group: 1,
             //书籍分类
-            sortId:"",
+            sortId: "",
             // 当前页数
             page: 1,
             //每页显示的条目数
@@ -35,15 +38,54 @@ class Classify {
 
         this.menuToggle();
         this.menusEach();
+        this.scroll();
+
     }
-    async booksListRender(){
+    async booksListRender() {
         let data = await booksListApi(this.sortData);
-        var html = booksListView({data:data.data.bookList});
+        if (this.status == "down") {
+            this.booksListData = data.data.bookList;
+        } else if (this.status == "up") {
+            this.booksListData = [...this.booksListData, ...data.data.bookList];
+        }
+
+
+        var html = booksListView({ data: this.booksListData });
         $(".booksList").html(html);
+        this.booksDetail();
+
+        
+
+
+    }
+    scroll() {
+        this.scroll = new BScroll(".container");
+
+        this.scroll.pullingUp(this.handleBooksListMore.bind(this), 300);
+
+        this.scroll.pullingDown(this.handleBooksListDown.bind(this))
+    }
+
+    //下拉刷新
+    handleBooksListDown() {
+        this.status = "down";
+        var arr = [1000010, 1000011, 1000012, 1000013, 1000014, 1000015];
+        this.sortData.sortId = arr[parseInt(Math.random() * 7)];
+        this.booksListRender();
+
+    }
+    //上拉加载更多
+    handleBooksListMore() {
+        // console.log( $(".container")[0].scrollHeight ,$(".container").scrollTop())
+        if ($(".container")[0].scrollHeight - $(".container").scrollTop() < 700) {
+            this.status = "up"
+            this.sortData.page++;
+            this.booksListRender();
+        }
     }
     //点击导航展开
     menuToggle() {
-        $(".sort-list_down").on("click", this.handlemenuToggle.bind(this))
+        $(".sort-list_down").on("tap", this.handlemenuToggle.bind(this))
     }
     handlemenuToggle() {
         $(".classify-sort>div").eq(1).toggleClass("sort-down");
@@ -56,11 +98,11 @@ class Classify {
         this.sortList.eq(index).find("div").each(this.handleSortListChildren.bind(this, index))
     }
     handleSortListChildren(parentIndex, index) {
-        this.sortList.eq(parentIndex).find("div").eq(index).on("click", this.handleMenuClickCb.bind(this, parentIndex, index))
+        this.sortList.eq(parentIndex).find("div").eq(index).on("tap", this.handleMenuClickCb.bind(this, parentIndex, index))
     }
     handleMenuClickCb(parentIndex, index) {
         let attr = this.getAttr(this.sortList.eq(parentIndex).find("div").eq(index)[0].attributes);
-
+        this.sortList.eq(parentIndex).find("div").eq(index).addClass("sort-active").siblings().removeClass("sort-active")
         switch (attr.key) {
             case "data-group":
                 this.sortData.group = attr.value;
@@ -77,7 +119,7 @@ class Classify {
         }
 
 
-       this.booksListRender();
+        this.booksListRender();
 
     }
     getAttr(attrs) {
@@ -90,6 +132,17 @@ class Classify {
                 }
             }
         }
+    }
+    booksDetail() {
+        $(".booksList-item").each(this.handleBooksListItemCb.bind(this))
+    }
+    handleBooksListItemCb(index) {
+        $(".booksList-item").eq(index).on("tap", this.handleBooksListItemID.bind(this, index))
+    }
+    handleBooksListItemID(index) {
+        var id = $(".booksList-item").eq(index).attr("data-id");
+
+        router.push("/detail?id=" + id);
     }
 }
 
