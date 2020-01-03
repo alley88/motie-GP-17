@@ -1,1 +1,15 @@
-<div>list页面</div>
+<div class="list-header">
+    <div>
+        <div>男生</div>
+        <div>女生</div>
+        <div>出版</div>
+    </div>
+</div>
+<div class="list-container">
+    <div class="list-slideBar">
+        <%for(var i=0;i<data.length;i++){%>
+            <div data-ranktype=<%-data[i].id%> class=<%-i==0?'active':''%>><%-data[i].name%></div>
+        <%}%>
+    </div>
+    <div class="list-books"></div>
+</div>

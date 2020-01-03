@@ -54,6 +54,9 @@ class Classify {
         } else if (this.status == "up") {
             this.booksListData = [...this.booksListData, ...data.data.bookList];
         }
+
+      
+
         var html = booksListView({ data: this.booksListData });
         $(".booksList").html(html);
         this.booksDetail();
@@ -70,6 +73,7 @@ class Classify {
 
     //下拉刷新
     handleBooksListDown() {
+       
         this.status = "down";
         var arr = [1000010, 1000011, 1000012, 1000013, 1000014, 1000015];
         this.sortData.sortId = arr[parseInt(Math.random() * 7)];
@@ -78,7 +82,7 @@ class Classify {
     }
     //上拉加载更多
     handleBooksListMore() {
-        // console.log( $(".container")[0].scrollHeight ,$(".container").scrollTop())
+      
         if ($(".container")[0].scrollHeight - $(".container").scrollTop() < 700) {
             this.status = "up"
             this.sortData.page++;

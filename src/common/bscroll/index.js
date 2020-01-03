@@ -2,84 +2,91 @@ import { throttle } from "utils/tool.js";
 
 
 export default class BScroll {
-    constructor(container, options) {
+    constructor(container) {
+        //获取需要滚动的盒子
         this.container = $(container);
-        this.content = this.container.children().eq(2);
+        // 下拉：13、设置防止多次执行的边界条件
+        this.flag = true;
     }
-    //上拉加载更多
+    //下拉
     pullingDown(callback) {
-        this.handleTouchStart(callback);
+        // 下拉：1、记录需要执行的事件
+        this.callback = callback;
+        //下拉：2、当手指按下的时候
+        this.container.on("touchstart", this.handleTouchStartCb.bind(this))
     }
+    handleTouchStartCb(e) {
+        // 下拉：3、记录手指按下的位置
+        this.disY = e.touches[0].pageY;
+        //下拉：4、给container盒子加动画
+        this.container.css({
+            transition: "transform .3s"
+        })
+
+        this.handleTouchMoveEvent();
+    }
+    //下拉：5、添加手指移动事件
+    handleTouchMoveEvent() {
+        this.handleTouchMoveCb = this.handleTouchMoveCb.bind(this)
+        this.container.on("touchmove", this.handleTouchMoveCb)
+    }
+    // 下拉：6、手指移动的时候要做的事情
+    handleTouchMoveCb(e) {
+        //下拉：7、记录手指移动的位置
+        this.moveY = e.touches[0].pageY;
+        //下拉：8、计算手指按下的位置与手指移动的位置的差值 这个差值主要是赋值给container移动使用
+        var ih = this.moveY - this.disY;
+
+        //防止 下拉和上拉冲突
+        if (this.container.scrollTop() <= 0) {
+            //下拉：9、设置边界值 防止用户无底线下拉
+            if (ih >= 0 && ih <= 200) {
+                //将差值赋值给container供container做移动使用
+                this.container.css({
+                    transform: "translateY(" + ih + "px)"
+                })
+
+
+                //下拉：14、设置边界条件
+                if (this.flag) {
+                    //下拉：10、当手指抬起的时候需要做的事情
+                    this.handleTouchEndEvent();
+                    this.flag = false;
+                }
+
+            }
+        }
+
+    }
+    handleTouchEndEvent() {
+        this.handleTouchEndCb = this.handleTouchEndCb.bind(this);
+        this.container.on("touchend", this.handleTouchEndCb)
+    }
+    handleTouchEndCb() {
+        //下拉：11、执行用户需要做的一些事情
+        this.callback();
+        //下拉:12、将container的Y值归0
+        this.container.css({
+            transition: "transform .3s ease-in-out .7s",
+            transform: "translateY(0)"
+        })
+
+        //下拉：15、将边界条件更改为true
+        this.flag = true;
+
+
+        //下拉：16、移除移动事件和抬起事件
+        this.container.off("touchmove", this.handleTouchMoveCb)
+        this.container.off("touchend", this.handleTouchEndCb)
+    }
+
+    //上拉
     pullingUp(callback, timeout) {
         this.container.on("scroll", this.handlePullingUpCb.bind(this, callback, timeout))
     }
     handlePullingUpCb(callback, timeout) {
-        throttle(callback, timeout)
+        //callback是用户需要执行的业务逻辑 timeout是节流的时间
+        throttle(callback, timeout);
     }
-
-
-
-    //下拉刷新
-    handleTouchStart(callback) {
-        this.container.on("touchstart", this.handleTouchStartCb.bind(this, callback))
-    }
-    handleTouchStartCb(callback, e) {
-        //记录手指按下的位置
-        var touch = e.touches[0];
-        this.disY = touch.pageY;
-        //给元素添加动画
-        this.container.css({
-            transition: "transform .3s"
-        })
-        //调用手指移动事件和手指移开事件
-        this.handleTouchMove();
-        this.handleTouchEnd(callback);
-    }
-    //手指移动
-    handleTouchMove() {
-        this.handleTouchMoveCb = this.handleTouchMoveCb.bind(this, )
-        this.container.on("touchmove", this.handleTouchMoveCb)
-    }
-    handleTouchMoveCb(e) {
-        //获取移动的位置 和 差值 = 移动的位置 - 初始的位置
-        var touch = e.touches[0];
-        var moveY = touch.pageY;
-        this.ih = moveY - this.disY;
-
-
-        //为了防止下拉刷新和上拉记载的事件冲突  scrollTop如果为正直则上拉加载  如果为负值则下拉刷新
-        if (this.container.scrollTop() <= 0) {
-            //改变container盒子的位置
-            if (this.ih >= 0 && this.ih <= 200) {
-                this.container.css({
-                    transform: "translateY(" + this.ih + "px)"
-                })
-            }
-        }
-    }
-    //手指移开事件
-    handleTouchEnd(callback) {
-        this.handleTouchEndCb = this.handleTouchEndCb.bind(this, callback);
-        this.container.one("touchend", this.handleTouchEndCb)
-    }
-    handleTouchEndCb(callback) {
-        //为了防止下拉刷新和上拉记载的事件冲突  scrollTop如果为正直则上拉加载  如果为负值则下拉刷新
-        if (this.container.scrollTop() <= 0) {
-            //用户需要做的事情
-            callback()
-
-            //将container回归到初始的位置
-            this.container.css({
-                transition: "transform .3s ease-in-out .8s",
-                transform: "translateY(0)"
-            })
-
-            this.container.off("touchend", this.handleTouchEndCb);
-            this.container.off("touchmove", this.handleTouchMoveCb)
-        }
-    }
-
-
-
 
 }

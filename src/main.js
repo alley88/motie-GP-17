@@ -3,6 +3,8 @@ import "touchjs";
 import "./router";
 import "styles/common/index.css";
 
+window.console.log = function(){}
+
 /*
     路由：
         根据用户请求路径的不同返回不同的页面或者数据

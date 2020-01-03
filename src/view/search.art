@@ -1,4 +1,7 @@
 <div class="search-header">
+    <div class="back">
+        <i class="iconfont">&#xe642;</i>
+    </div>
     <div>
         <i class="iconfont">&#xe613;</i>
         <input type="text" placeholder="黄泉药店" class="search-input"/>
@@ -7,7 +10,7 @@
 <div class="Record">
     <div class="Record-t">
         <div>最近搜索</div>
-        <div>
+        <div class="clear">
             <i class="iconfont">&#xe747;</i>
         </div>
     </div>
@@ -17,3 +20,4 @@
         <%}%>
     </div>
 </div>
+<div class="search-list"></div>

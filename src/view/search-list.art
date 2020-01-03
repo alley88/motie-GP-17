@@ -1,0 +1,17 @@
+<%for(var i=0;i<data.length;i++){%>
+    <div class="search-list-item" data-id=<%-data[i].id%>>
+        <div>
+            <img src=<%-data[i].icon%>>
+        </div>
+        <div class="search-list-des">
+            <div><%-data[i].name%></div>
+            <div><%-data[i].introduce%></div>
+            <div class="auth-des">
+                <div>
+                    <img src=<%-data[i].authorIcon%>>
+                </div>
+                <div><%-data[i].authorName%></div>
+            </div>
+        </div>
+    </div>
+<%}%>
