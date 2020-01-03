@@ -38,7 +38,7 @@ class Classify {
 
         this.menuToggle();
         this.menusEach();
-        this.scroll();
+        this.handlescroll();
 
     }
     async booksListRender() {
@@ -63,7 +63,7 @@ class Classify {
     }
 
     //上拉加载更多和下拉刷新事件
-    scroll() {
+    handlescroll() {
         this.scroll = new BScroll(".container");
 
         this.scroll.pullingUp(this.handleBooksListMore.bind(this), 300);
